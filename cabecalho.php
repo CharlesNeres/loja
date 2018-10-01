@@ -19,6 +19,7 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li><a href="produtoFormulario.php">Adiciona produto</a></li>
+                    <li><a href="listaProduto.php">Produtos</a></li>
                     <li><a href="#">Sobre a empresa</a></li>
                 </ul>
             </div>
