@@ -4,11 +4,17 @@
 
 
 <table class="table table-striped table-bordered">
-
+    <tr>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th>Descrição</th>
+        <th>Categoria</th>
+        <th>Remover</th>  
+    </tr>
     <?php
     $produtos = listaProdutos($conexao);
     foreach ($produtos as $produto):
-        ?>
+        ?>        
         <tr>
             <td><?= $produto['nome']?></td>
             <td><?= $produto['preco']?></td>
