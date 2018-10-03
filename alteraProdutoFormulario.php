@@ -1,34 +1,41 @@
 <?php include ("cabecalho.php"); 
 include ("conecta.php");
 include ("bancoCategoria.php");
+include ("bancoProduto.php");
 
+$id = $_GET['id'];
+$produto = buscaProduto($conexao, $id);
 $categorias = listaCategorias($conexao);
+$usado = $produto['usado'] ? "checked = 'checked'" : "";//usando operador ternario para verificar se o produto eh usado ou nao
 ?>
             <h1>Alterando um produto</h1>
             <form action="alteraProduto.php" method="POST">
             <table>
                 <tr>
                     <td>Nome</td>
-                    <td><input class="form-control" type="text" name="nome"></td>                
+                    <td><input class="form-control" type="text" name="nome" value="<?=$produto['nome']?>"></td>                
                 </tr>
                 <tr>
                     <td>Preço</td>
-                    <td><input class="form-control" type="number" name="preco"></td>
+                    <td><input class="form-control" type="number" name="preco" value="<?=$produto['preco']?>"></td>
                 </tr>    
                 <tr>
                     <td>Descrição</td>
-                    <td><textarea class="form-control" name="descricao"></textarea></td>
+                    <td><textarea class="form-control" name="descricao"><?=$produto['descricao']?></textarea></td><!--coloque entre valor entre-->
                 </tr>   
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" name="usado" value="true">Usado</td>
+                    <td><input type="checkbox" name="usado" <?=$usado?> value="true">Usado</td>
                 </tr>
                 <tr>
                     <td>Categoria</td>
                     <td>
                         <select name="categoria_id" class="form-control">                            
-                            <?php foreach($categorias as $categoria):?>
-                            <option value="<?=$categoria['id']?>"> 
+                            <?php foreach($categorias as $categoria):
+                            $essaEhACategoria = $produto['categoria_id'] == $categoria['id']; 
+                            $selecao = $essaEhACategoria ? "selected = 'selected'" : "";
+                            ?>
+                            <option value="<?=$categoria['id']?>" <?=$selecao?>> 
                                     <?=$categoria['nome']?>
                             </option>                                                           
                             <?php endforeach ?>
