@@ -10,6 +10,7 @@ $usado = $produto['usado'] ? "checked = 'checked'" : "";//usando operador ternar
 ?>
             <h1>Alterando um produto</h1>
             <form action="alteraProduto.php" method="POST">
+            <input type="hidden" name="id" value="<?=$produto['id']?>">
             <table>
                 <tr>
                     <td>Nome</td>
